@@ -73,8 +73,6 @@ tensorboard-plugin-wit==1.8.0
 tensorflow-estimator==2.5.0
 termcolor==1.1.0
 threadpoolctl==2.1.0
-tqdm==4.61.0
--e git+https://github.com/twintproject/twint.git@4b30fa33991ccdf89c77471382daad3d3bc8c988#egg=twint
 typed-ast==1.4.1
 typing-extensions==3.7.4.3
 urllib3==1.26.5
