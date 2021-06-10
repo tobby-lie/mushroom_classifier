@@ -14,7 +14,8 @@ import base64
 external_stylesheets = [
     "https://use.fontawesome.com/releases/v5.0.7/css/all.css",
     'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',
-    'https://fonts.googleapis.com/css?family=Roboto&display=swap'
+    'https://fonts.googleapis.com/css?family=Roboto&display=swap',
+    dbc.themes.BOOTSTRAP
 ]
 
 intro_page_url = "https://assets10.lottiefiles.com/packages/lf20_eprctl58.json"
@@ -35,7 +36,7 @@ app = dash.Dash(
     __name__,
     external_stylesheets=external_stylesheets,
     meta_tags=[
-        {"name": "viewport", "content": "width=device-width, initial-scale=1"}
+        {"name": "viewport", "content": "width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5,"}
     ],
     suppress_callback_exceptions=True
 )
@@ -64,8 +65,8 @@ home_layout = html.Div(
                     src='data:image/png;base64,{}'.format(
                         encoded_image.decode()),
                     style={
-                        'height': '500px',
-                        'width': '500px',
+                        'height': '300px',
+                        'width': '300px',
                     },
                 )
             ], style={'textAlign': 'center'}
@@ -107,6 +108,16 @@ intro_page = html.Div(
                                      height="100%", url=intro_page_url)),
                             html.H4(
                                 "EXPERIMENTAL classifier of edible/poisonous mushrooms 🍄 via a Neural Network"),
+                            dbc.Nav(
+                                [
+                                    dbc.NavItem(dbc.NavLink( "NEXT >>", active=True, href='/disclaimer_page')),
+                                ],horizontal='center',
+                            ),
+                            dbc.Nav(
+                                [
+                                    dbc.NavItem(dbc.NavLink("<< BACK", active=True, href='/')),
+                                ],horizontal='center',
+        ),
                         ]
                     ),
                     className="w-30",
@@ -122,20 +133,7 @@ intro_page = html.Div(
                 ),
             ], justify='center'
         ),
-        dbc.Nav(
-            [
-                dbc.NavItem(dbc.NavLink(
-                            "NEXT >>", active=True, href='/disclaimer_page')),
-            ],
-            horizontal='center',
-        ),
-        dbc.Nav(
-            [
-                dbc.NavItem(dbc.NavLink(
-                            "<< BACK", active=True, href='/')),
-            ],
-            horizontal='center',
-        ),
+        
     ], style={"margin-top": "50px"}
 
 )
@@ -600,16 +598,16 @@ questions = html.Div(
                         ),
 
                     ],
-                    style={'margin-left': "100px"}
+                    # style={'margin-left': "100px"}
                 ),
-                className="w-25",
-                color="primary",
-                outline=True,
-                style={
-                    "width": "18rem",
-                    "border-radius": "2%",
-                    # "background": "PowderBlue",
-                },
+                # className="w-25",
+                # color="primary",
+                # outline=True,
+                # style={
+                #     "width": "18rem",
+                #     "border-radius": "2%",
+                #     # "background": "PowderBlue",
+                # },
             ), justify="center"
         ),
 
