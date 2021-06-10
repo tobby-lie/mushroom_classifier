@@ -1,7 +1,6 @@
 import os
 import requests
 import time
-import pandas as pd
 import config
 from flask import request
 import dash
@@ -729,32 +728,6 @@ def update_proba(review):
     else:
         return None, 0, None, 0, True
 
-
-# Load review table
-@ app.callback(
-    Output('admin-page-content', 'children'),
-    [Input('url', 'pathname')]
-)
-def load_review_table(pathname):
-    if pathname != "/admin":
-        return None
-
-    response = requests.get(f"{config.API_URL}/reviews")
-
-    reviews = pd.DataFrame(response.json())
-
-    table = dbc.Table.from_dataframe(reviews,
-                                     striped=True,
-                                     bordered=True,
-                                     hover=True,
-                                     responsive=True,
-                                     header=["id", "brand", "created_date", "review",
-                                             "rating", "suggested_rating", "sentiment_score"],
-                                     columns=["id", "brand", "created_date", "review",
-                                              "rating", "suggested_rating", "sentiment_score"]
-                                     )
-
-    return table
 
 # Update page layout
 
