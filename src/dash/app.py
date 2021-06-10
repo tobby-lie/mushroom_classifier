@@ -716,8 +716,6 @@ def display_page(pathname):
         return intro_page
     if pathname == "/disclaimer_page":
         return disclaimer_page
-    if pathname == "/results":
-        return results_page
     else:
         return [
             html.Div(
