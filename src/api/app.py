@@ -2,8 +2,6 @@ import sys
 import os
 import random
 
-from tqdm import tqdm
-
 from flask import Blueprint, request, jsonify, Flask
 import tensorflow as tf
 import wget

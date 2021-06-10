@@ -3,4 +3,4 @@ dash-daq==0.2.2
 requests==2.22.0
 dash_bootstrap_components==0.7.2
 gunicorn==19.9.0
-dash-gif-component==1.1.0
+dash-extensions==0.0.55

@@ -8,9 +8,7 @@ import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 import dash_extensions as de
-import dash_table
 from dash.dependencies import Input, Output, State
-import dash_gif_component as gif
 import base64
 
 external_stylesheets = [
