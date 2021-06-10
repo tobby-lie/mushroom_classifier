@@ -9,4 +9,6 @@ ADD . /app
 
 EXPOSE 5000
 
+RUN pip3 install --no-cache-dir tensorflow
+
 CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
