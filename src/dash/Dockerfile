@@ -8,5 +8,5 @@ ADD . /app
 
 EXPOSE 8050
 
-CMD ["gunicorn", "-b", "0.0.0.0:8050", "app:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:8050", "app:server"]
 # RUN python app.py

@@ -2,11 +2,13 @@ import sys
 import os
 import random
 
+from tqdm import tqdm
+
 from flask import Blueprint, request, jsonify, Flask
 import tensorflow as tf
 import wget
 
-# import db
+import db
 import config
 
 from ml.model import MushroomClassifier
@@ -82,6 +84,7 @@ def predict_mushroom():
             'habitat'
         ]
         print('here')
+        print(request)
         print(request.form)
         if any(field not in request.form for field in expected_fields):
             return jsonify({'error': 'Missing field in body'}), 400
@@ -107,6 +110,36 @@ def predict_mushroom():
             return jsonify(output)
 
 
+@api.route('/mushroom', methods=['POST'])
+def post_mushroom():
+    if request.method == 'POST':
+        expected_fields = [
+            'cap_shape',
+            'cap_surface',
+            'cap_color',
+            'bruses',
+            'odor',
+            'gill_attachement',
+            'gill_spacing',
+            'gill_size',
+            'gill_color',
+            'label'
+        ]
+        if any(field not in request.form for field in expected_fields):
+            return jsonify({'error': 'Missing field in body'}), 400
+
+        query = db.Review.create(**request.form)
+        return jsonify(query.serialize())
+
+
+@api.route('/mushrooms', methods=['GET'])
+def get_mushrooms():
+    if request.method == 'GET':
+        query = db.Mushroom.select()
+        return jsonify([r.serialize() for r in query])
+
+
+app.register_blueprint(api, url_prefix='/api')
+
 if __name__ == '__main__':
     app.run(debug=config.DEBUG, host=config.HOST)
-    # app.run()
