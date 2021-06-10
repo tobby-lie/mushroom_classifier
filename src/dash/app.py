@@ -698,35 +698,6 @@ def get_edibility(submit_click_ts, capshape, capsurface, capcolor,
     return msg, lottie_animation
 
 
-@ app.callback(
-    [
-        Output('proba', 'children'),
-        Output('progress', 'value'),
-        Output('progress', 'color'),
-        Output('rating', 'value'),
-        Output('submit_button', 'disabled')
-    ],
-    [Input('review', 'value')]
-)
-def update_proba(review):
-    if review is not None and review.strip() != '':
-        response = requests.post(
-            f"{config.API_URL}/predict", data={'review': review})
-        proba = response.json()
-        proba = round(proba * 100, 2)
-        suggested_rating = min(int((proba / 100) * 5 + 1), 5)
-        text_proba = f"{proba}%"
-
-        if proba >= 67:
-            return text_proba, proba, 'success', suggested_rating, False
-        elif 33 < proba < 67:
-            return text_proba, proba, 'warning', suggested_rating, False
-        elif proba <= 33:
-            return text_proba, proba, 'danger', suggested_rating, False
-    else:
-        return None, 0, None, 0, True
-
-
 # Update page layout
 
 
@@ -764,3 +735,4 @@ def display_page(pathname):
 
 if __name__ == '__main__':
     app.run_server(debug=config.DEBUG, host=config.HOST)
+    # app.run()
